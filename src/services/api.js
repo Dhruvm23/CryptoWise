@@ -1,4 +1,10 @@
-const BASE_URL = 'https://api.coingecko.com/api/v3';
+// Detect if running in production (Vercel)
+const IS_PRODUCTION = typeof window !== 'undefined' && !window.location.hostname.includes('localhost');
+
+// Use proxy in production, direct API in development
+const BASE_URL = IS_PRODUCTION
+    ? '/api/coingecko'
+    : 'https://api.coingecko.com/api/v3';
 
 // ============================================
 // CACHING SYSTEM - Stores responses to reduce API calls
@@ -14,6 +20,31 @@ const REQUEST_WINDOW = 60 * 1000; // 1 minute window
 const requestTimestamps = [];
 const requestQueue = [];
 let isProcessingQueue = false;
+
+// Build the URL based on environment
+const buildUrl = (endpoint) => {
+    if (IS_PRODUCTION) {
+        // In production, use the proxy with path parameter
+        const cleanEndpoint = endpoint.startsWith('/') ? endpoint.slice(1) : endpoint;
+
+        // Split endpoint into path and query params
+        const [path, queryString] = cleanEndpoint.split('?');
+
+        let url = `${BASE_URL}?path=${encodeURIComponent(path)}`;
+
+        // Add other query params if they exist
+        if (queryString) {
+            const params = new URLSearchParams(queryString);
+            params.forEach((value, key) => {
+                url += `&${key}=${encodeURIComponent(value)}`;
+            });
+        }
+
+        return url;
+    }
+    // In development, use direct API
+    return `${BASE_URL}${endpoint}`;
+};
 
 // Check if we can make a request right now
 const canMakeRequest = () => {
@@ -53,7 +84,7 @@ const processQueue = async () => {
 
         try {
             requestTimestamps.push(Date.now());
-            const response = await fetch(`${BASE_URL}${endpoint}`, options);
+            const response = await fetch(buildUrl(endpoint), options);
 
             if (!response.ok) {
                 if (response.status === 429) {
@@ -93,7 +124,7 @@ const fetchWithCache = async (endpoint, options = {}) => {
         requestTimestamps.push(Date.now());
 
         try {
-            const response = await fetch(`${BASE_URL}${endpoint}`, options);
+            const response = await fetch(buildUrl(endpoint), options);
 
             if (!response.ok) {
                 if (response.status === 429) {
