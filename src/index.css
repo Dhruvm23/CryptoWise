@@ -1,0 +1,122 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-slate-50 text-slate-900 font-sans antialiased;
+  }
+
+  .dark body {
+    @apply bg-background-primary text-text-primary;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-semibold tracking-tight text-slate-900;
+  }
+
+  .dark h1,
+  .dark h2,
+  .dark h3,
+  .dark h4,
+  .dark h5,
+  .dark h6 {
+    @apply text-slate-50;
+  }
+}
+
+@layer components {
+
+  /* Glassmorphism Utilities - Light theme aware */
+  .glass-panel {
+    @apply bg-white border border-slate-200 shadow-sm rounded-2xl;
+  }
+
+  .dark .glass-panel {
+    @apply bg-background-secondary border-glass-border shadow-glass backdrop-blur-md;
+  }
+
+  .glass-card {
+    @apply bg-white border border-slate-200 shadow-sm rounded-xl transition-all duration-200 hover:border-slate-300 hover:-translate-y-1 hover:shadow-md;
+  }
+
+  .dark .glass-card {
+    @apply bg-background-secondary border-glass-border hover:border-white/10 hover:shadow-lg;
+  }
+
+  .btn-primary {
+    @apply bg-gradient-to-r from-accent-teal via-accent-violet to-accent-amber text-white font-semibold px-5 py-2.5 rounded-lg transition-transform hover:-translate-y-0.5 hover:brightness-110 active:scale-95;
+  }
+
+  .btn-glass {
+    @apply bg-slate-100 border border-slate-200 text-slate-700 px-4 py-2 rounded-lg transition-all hover:bg-slate-200 active:scale-95;
+  }
+
+  .dark .btn-glass {
+    @apply bg-white/5 border-white/10 text-text-primary hover:bg-white/10;
+  }
+
+  .input-glass {
+    @apply bg-slate-100 border border-slate-200 text-slate-900 focus:border-accent-violet focus:ring-1 focus:ring-accent-violet rounded-lg px-4 py-2 outline-none transition-all;
+  }
+
+  .dark .input-glass {
+    @apply bg-background-tertiary border-glass-border text-text-primary;
+  }
+
+  .input-glass::placeholder {
+    @apply text-slate-400;
+  }
+
+  .dark .input-glass::placeholder {
+    @apply text-text-tertiary;
+  }
+
+  /* Text color utilities for light/dark */
+  .text-heading {
+    @apply text-slate-900;
+  }
+
+  .dark .text-heading {
+    @apply text-slate-50;
+  }
+
+  .text-body {
+    @apply text-slate-700;
+  }
+
+  .dark .text-body {
+    @apply text-slate-300;
+  }
+
+  .text-muted {
+    @apply text-slate-500;
+  }
+
+  .dark .text-muted {
+    @apply text-slate-400;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-300 rounded-full hover:bg-slate-400;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  @apply bg-glass-border hover:bg-text-secondary;
+}
