@@ -15,17 +15,17 @@ const MainLayout = () => {
             }`}>
             <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
 
-            <main className="flex-1 flex flex-col min-h-screen transition-all duration-300 ease-out lg:ml-64">
+            <main className="flex-1 flex flex-col min-h-screen transition-all duration-300 ease-out md:ml-16 lg:ml-64 overflow-x-hidden">
                 <Topbar onMenuClick={() => setIsSidebarOpen(true)} />
-                <div className="flex-1 overflow-y-auto w-full max-w-7xl mx-auto p-4 md:p-6 lg:p-8 flex flex-col">
+                <div className="flex-1 overflow-y-auto w-full max-w-7xl mx-auto px-3 py-4 sm:px-4 sm:py-5 md:px-6 md:py-6 lg:px-8 lg:py-8 flex flex-col">
                     <div className="flex-1">
                         <Outlet />
                     </div>
 
-                    <footer className={`mt-12 border-t pt-6 pb-2 text-xs flex flex-col sm:flex-row items-center justify-between gap-4 ${isDark ? 'border-slate-800/60 text-slate-500' : 'border-slate-200 text-slate-400'
+                    <footer className={`mt-8 sm:mt-12 border-t pt-4 sm:pt-6 pb-2 text-xs flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 ${isDark ? 'border-slate-800/60 text-slate-500' : 'border-slate-200 text-slate-400'
                         }`}>
                         <p>© 2025 CryptoWise. All rights reserved.</p>
-                        <div className="flex gap-6">
+                        <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
                             <a href="#" className="hover:text-accent-violet transition-colors">Privacy Policy</a>
                             <a href="#" className="hover:text-accent-violet transition-colors">Terms of Service</a>
                             <a href="#" className="hover:text-accent-violet transition-colors">Contact Support</a>

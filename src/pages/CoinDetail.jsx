@@ -82,18 +82,18 @@ const CoinDetail = () => {
     );
 
     return (
-        <div className="container min-h-screen pb-20 pt-6 space-y-6 fade-in">
+        <div className="container min-h-screen pb-20 pt-4 sm:pt-6 space-y-4 sm:space-y-6 fade-in">
             {/* Header Card */}
-            <div className="glass-panel p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-                <div className="flex items-center gap-4">
-                    <img src={coin.image.large} alt={coin.name} className="w-16 h-16 rounded-full shadow-lg" />
+            <div className="glass-panel p-4 sm:p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 sm:gap-6">
+                <div className="flex items-center gap-3 sm:gap-4">
+                    <img src={coin.image.large} alt={coin.name} className="w-12 h-12 sm:w-16 sm:h-16 rounded-full shadow-lg" loading="lazy" />
                     <div>
-                        <div className="flex items-center gap-3">
-                            <h1 className="text-3xl font-bold text-text-primary">{coin.name}</h1>
-                            <span className="px-2 py-0.5 rounded bg-background-tertiary text-text-secondary text-sm font-semibold border border-glass-border">{coin.symbol.toUpperCase()}</span>
-                            <span className="px-2 py-0.5 rounded bg-background-tertiary text-xs font-mono text-text-muted">Rank #{coin.market_cap_rank}</span>
+                        <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                            <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-text-primary">{coin.name}</h1>
+                            <span className="px-2 py-0.5 rounded bg-background-tertiary text-text-secondary text-xs sm:text-sm font-semibold border border-glass-border">{coin.symbol.toUpperCase()}</span>
+                            <span className="px-2 py-0.5 rounded bg-background-tertiary text-xs font-mono text-text-muted hidden xs:inline">Rank #{coin.market_cap_rank}</span>
                         </div>
-                        <div className="flex gap-4 mt-3">
+                        <div className="flex flex-wrap gap-3 sm:gap-4 mt-2 sm:mt-3">
                             {coin.links.homepage[0] && (
                                 <a href={coin.links.homepage[0]} target="_blank" rel="noreferrer" className="flex items-center gap-1 text-xs text-text-secondary hover:text-accent transition-colors">
                                     <Globe size={12} /> Website
@@ -108,69 +108,71 @@ const CoinDetail = () => {
                     </div>
                 </div>
 
-                <div className="flex flex-col items-end w-full md:w-auto">
-                    <div className="text-4xl font-bold text-text-primary tracking-tight">
+                <div className="flex flex-col items-start sm:items-end w-full md:w-auto">
+                    <div className="text-fluid-3xl sm:text-3xl md:text-4xl font-bold text-text-primary tracking-tight">
                         {currency.symbol}{currentPrice.toLocaleString()}
                     </div>
-                    <div className={`flex items-center gap-1 font-bold mt-1 ${priceChange >= 0 ? 'text-success' : 'text-danger'}`}>
-                        {priceChange >= 0 ? <ArrowUp size={20} /> : <ArrowDown size={20} />}
+                    <div className={`flex items-center gap-1 font-bold mt-1 text-sm sm:text-base ${priceChange >= 0 ? 'text-success' : 'text-danger'}`}>
+                        {priceChange >= 0 ? <ArrowUp size={18} /> : <ArrowDown size={18} />}
                         {Math.abs(priceChange).toFixed(2)}% (24h)
                     </div>
 
-                    <div className="flex gap-3 mt-4 w-full md:w-auto">
+                    <div className="flex gap-2 sm:gap-3 mt-3 sm:mt-4 w-full md:w-auto">
                         <button
                             onClick={() => toggleWatchlist(coin.id)}
-                            className={`flex flex-1 md:flex-none items-center justify-center gap-2 px-4 py-2 rounded-lg font-medium transition-all ${isInWatchlist(coin.id)
+                            className={`flex flex-1 md:flex-none items-center justify-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 rounded-lg font-medium text-sm transition-all touch-target ${isInWatchlist(coin.id)
                                 ? 'bg-primary/10 text-primary border border-primary/20'
                                 : 'btn-glass'
                                 }`}
                         >
-                            <Star size={18} fill={isInWatchlist(coin.id) ? "currentColor" : "none"} />
-                            {isInWatchlist(coin.id) ? 'Watchlist' : 'Add to Watchlist'}
+                            <Star size={16} fill={isInWatchlist(coin.id) ? "currentColor" : "none"} />
+                            <span className="hidden xs:inline">{isInWatchlist(coin.id) ? 'Watchlist' : 'Add'}</span>
                         </button>
 
                         <button
                             onClick={() => setShowAlertModal(true)}
-                            className="btn-glass flex flex-1 md:flex-none items-center justify-center gap-2"
+                            className="btn-glass flex flex-1 md:flex-none items-center justify-center gap-1 sm:gap-2 text-sm touch-target"
                         >
-                            <Bell size={18} /> Alert
+                            <Bell size={16} /> Alert
                         </button>
                     </div>
                 </div>
             </div>
 
             {/* Main Content Grid */}
-            <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
                 {/* Left Column: Chart & Stats */}
-                <div className="xl:col-span-2 space-y-6">
+                <div className="lg:col-span-2 space-y-4 sm:space-y-6">
                     {/* Price Chart Card */}
-                    <div className="glass-panel p-6">
-                        <div className="flex flex-wrap items-center justify-between gap-4 mb-6 border-b border-glass-border pb-4">
-                            <h3 className="text-xl font-bold text-text-primary flex items-center gap-2">
-                                <Activity size={20} className="text-accent" />
+                    <div className="glass-panel p-4 sm:p-6">
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 mb-4 sm:mb-6 border-b border-glass-border pb-4">
+                            <h3 className="text-lg sm:text-xl font-bold text-text-primary flex items-center gap-2">
+                                <Activity size={18} className="text-accent sm:w-5 sm:h-5" />
                                 Price Chart
                             </h3>
-                            <div className="flex gap-2">
+                            <div className="flex gap-1.5 sm:gap-2 overflow-x-auto hide-scrollbar -mx-1 px-1">
                                 {['24h', '7d', '1m', '1y', 'Max'].map(range => (
                                     <button
                                         key={range}
-                                        className={`px-3 py-1 rounded-md text-xs font-bold transition-all ${range === '7d' ? 'bg-primary text-background-primary' : 'bg-background-tertiary text-text-secondary hover:bg-white/10'}`}
+                                        className={`px-2.5 sm:px-3 py-1.5 rounded-md text-xs font-bold transition-all whitespace-nowrap touch-target ${range === '7d' ? 'bg-primary text-background-primary' : 'bg-background-tertiary text-text-secondary hover:bg-white/10'}`}
                                     >
                                         {range}
                                     </button>
                                 ))}
                             </div>
                         </div>
-                        <CoinChart coinId={id} />
+                        <div className="aspect-chart">
+                            <CoinChart coinId={id} />
+                        </div>
                     </div>
 
                     {/* Market Stats Grid Card */}
-                    <div className="glass-panel p-6">
-                        <h3 className="text-xl font-bold text-text-primary mb-6 flex items-center gap-2">
-                            <Database size={20} className="text-accent" />
+                    <div className="glass-panel p-4 sm:p-6">
+                        <h3 className="text-lg sm:text-xl font-bold text-text-primary mb-4 sm:mb-6 flex items-center gap-2">
+                            <Database size={18} className="text-accent sm:w-5 sm:h-5" />
                             Market Stats
                         </h3>
-                        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
                             <StatCard
                                 label="Market Cap"
                                 value={`${currency.symbol}${coin.market_data.market_cap[currency.code.toLowerCase()]?.toLocaleString()}`}

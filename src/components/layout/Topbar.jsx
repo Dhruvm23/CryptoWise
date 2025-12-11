@@ -66,25 +66,27 @@ const Topbar = ({ onMenuClick }) => {
             ? 'bg-background-primary/80 border-slate-800'
             : 'bg-white/80 border-slate-200'
             }`}>
-            {/* Mobile Nav */}
-            <div className="flex items-center gap-4 lg:hidden">
+            {/* Mobile Nav - Left */}
+            <div className="flex items-center gap-2 md:hidden">
                 <button
                     onClick={onMenuClick}
-                    className={`p-2 -ml-2 transition-colors ${isDark ? 'text-slate-400 hover:text-white' : 'text-slate-600 hover:text-slate-900'}`}
+                    className={`p-2 -ml-2 transition-colors touch-target ${isDark ? 'text-slate-400 hover:text-white' : 'text-slate-600 hover:text-slate-900'}`}
+                    aria-label="Open menu"
                 >
                     <Menu size={24} />
                 </button>
+            </div>
+
+            {/* Logo - Center on mobile, hidden on md+ (shown in sidebar) */}
+            <div className="md:hidden flex-1 flex justify-center">
                 <Link to="/" className={`text-lg ${isDark ? 'text-slate-100' : 'text-slate-900'}`}>
                     <span className="font-black italic bg-gradient-to-r from-accent-teal via-accent-violet to-accent-amber bg-clip-text text-transparent">Crypto</span>
                     <span className="font-extrabold italic text-accent-amber">Wise</span>
                 </Link>
             </div>
 
-            {/* Empty spacer for desktop alignment */}
-            <div className="hidden lg:block"></div>
-
-            {/* Search */}
-            <div className="flex-1 max-w-md mx-auto relative px-4" ref={searchRef}>
+            {/* Search - Hidden on mobile, visible on md+ */}
+            <div className="hidden md:block flex-1 max-w-md mx-auto relative" ref={searchRef}>
                 <div className="relative group">
                     <Search size={16} className={`absolute left-4 top-1/2 -translate-y-1/2 transition-colors ${isDark ? 'text-slate-500 group-focus-within:text-accent-violet' : 'text-slate-400 group-focus-within:text-accent-violet'}`} />
                     <input

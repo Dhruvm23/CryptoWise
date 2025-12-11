@@ -46,30 +46,30 @@ const Learn = () => {
     ];
 
     return (
-        <div className="container min-h-screen pb-20 pt-6 fade-in space-y-8">
-            <div className="text-center max-w-2xl mx-auto space-y-4">
-                <h1 className={`text-4xl font-bold tracking-tight ${isDark ? 'text-white' : 'text-slate-900'}`}>Crypto Education</h1>
-                <p className={isDark ? 'text-slate-400 text-lg' : 'text-slate-600 text-lg'}>
+        <div className="container min-h-screen pb-20 pt-4 sm:pt-6 fade-in space-y-6 sm:space-y-8">
+            <div className="text-center max-w-2xl mx-auto space-y-3 sm:space-y-4 px-4">
+                <h1 className={`text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight ${isDark ? 'text-white' : 'text-slate-900'}`}>Crypto Education</h1>
+                <p className={`text-sm sm:text-base md:text-lg ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
                     New to crypto? Start here. We've curated simple guides to help you understand the basics of blockchain and cryptocurrency markets.
                 </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                 {topics.map((topic, i) => (
                     <Link
                         key={i}
                         to={topic.path}
-                        className={`p-6 rounded-2xl group cursor-pointer transition-all duration-300 hover:-translate-y-1 ${isDark
-                                ? 'bg-background-secondary border border-slate-800/60 hover:shadow-glow hover:border-accent-violet/30'
-                                : 'bg-white border border-slate-200 shadow-sm hover:shadow-lg hover:border-accent-violet/30'
+                        className={`p-4 sm:p-6 rounded-2xl group cursor-pointer transition-all duration-300 hover:-translate-y-1 ${isDark
+                            ? 'bg-background-secondary border border-slate-800/60 hover:shadow-glow hover:border-accent-violet/30'
+                            : 'bg-white border border-slate-200 shadow-sm hover:shadow-lg hover:border-accent-violet/30'
                             }`}
                     >
-                        <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform ${isDark ? 'bg-background-tertiary' : 'bg-slate-100'
+                        <div className={`w-12 h-12 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform ${isDark ? 'bg-background-tertiary' : 'bg-slate-100'
                             }`}>
                             {topic.icon}
                         </div>
-                        <h3 className={`text-xl font-bold mb-3 ${isDark ? 'text-white' : 'text-slate-900'}`}>{topic.title}</h3>
-                        <p className={`mb-6 leading-relaxed ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
+                        <h3 className={`text-lg sm:text-xl font-bold mb-2 sm:mb-3 ${isDark ? 'text-white' : 'text-slate-900'}`}>{topic.title}</h3>
+                        <p className={`text-sm sm:text-base mb-4 sm:mb-6 leading-relaxed ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
                             {topic.desc}
                         </p>
                         <div className="flex items-center gap-2 text-accent-violet font-bold text-sm group-hover:gap-3 transition-all">

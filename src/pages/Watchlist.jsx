@@ -38,11 +38,11 @@ const Watchlist = () => {
 
     if (watchlist.length === 0) {
         return (
-            <div className="flex flex-col items-center justify-center min-h-[50vh] text-center p-8">
-                <Star size={64} className="text-secondary mb-4 opacity-50" />
-                <h2 className="text-2xl font-bold mb-2">Your Watchlist is Empty</h2>
-                <p className="text-secondary mb-6">Use the star icon to add coins to your watchlist.</p>
-                <Link to="/markets" className="bg-[var(--accent-color)] text-white px-6 py-3 rounded-xl font-bold">
+            <div className="flex flex-col items-center justify-center min-h-[50vh] text-center p-6 sm:p-8">
+                <Star size={48} className="text-secondary mb-4 opacity-50 sm:w-16 sm:h-16" />
+                <h2 className="text-xl sm:text-2xl font-bold mb-2">Your Watchlist is Empty</h2>
+                <p className="text-secondary mb-6 text-sm sm:text-base">Use the star icon to add coins to your watchlist.</p>
+                <Link to="/markets" className="btn-primary px-6 py-3 rounded-xl font-bold touch-target">
                     Browse Markets
                 </Link>
             </div>
@@ -50,14 +50,18 @@ const Watchlist = () => {
     }
 
     return (
-        <div className="p-6 max-w-[1600px] mx-auto fade-in">
-            <h1 className="text-2xl font-bold mb-6">My Watchlist</h1>
+        <div className="container min-h-screen pb-20 pt-4 sm:pt-6 space-y-4 sm:space-y-6 fade-in">
+            {/* Heading */}
+            <div className="flex items-center gap-3">
+                <span className="h-6 sm:h-8 w-1.5 rounded-full bg-gradient-to-b from-amber-500 via-purple-500 to-indigo-500" />
+                <h1 className="text-xl sm:text-2xl font-bold">My Watchlist</h1>
+            </div>
 
-            <div className="glass-panel p-6 min-h-[400px]">
+            <div className="glass-panel p-4 sm:p-6 min-h-[400px]">
                 {loading ? (
-                    <div className="space-y-4">
+                    <div className="space-y-3 sm:space-y-4">
                         {[...Array(5)].map((_, i) => (
-                            <div key={i} className="h-12 bg-white/5 rounded animate-pulse" />
+                            <div key={i} className="h-10 sm:h-12 bg-white/5 rounded animate-pulse" />
                         ))}
                     </div>
                 ) : (

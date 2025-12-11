@@ -73,6 +73,13 @@ export default {
                     '0%': { transform: 'translateX(-100%)' },
                     '100%': { transform: 'translateX(0)' },
                 },
+                slideInRight: {
+                    '0%': { transform: 'translateX(100%)' },
+                    '100%': { transform: 'translateX(0)' },
+                },
+            },
+            screens: {
+                'xs': '375px',
             },
             backgroundImage: {
                 'gradient-accent': 'linear-gradient(135deg, #14b8a6 0%, #6366f1 50%, #f59e0b 100%)',

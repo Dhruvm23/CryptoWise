@@ -75,21 +75,21 @@ const Portfolio = () => {
     };
 
     return (
-        <div className="container min-h-screen pb-20 pt-6 font-sans fade-in space-y-6">
-            <div className="flex justify-between items-center">
-                {/* Stylized Heading */}
+        <div className="container min-h-screen pb-20 pt-4 sm:pt-6 font-sans fade-in space-y-4 sm:space-y-6">
+            {/* Header */}
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
                 <div className="flex items-center gap-3">
-                    <span className="h-8 w-1.5 rounded-full bg-gradient-to-b from-amber-500 via-purple-500 to-indigo-500" />
-                    <div className="flex items-center gap-3">
-                        <Wallet className="text-accent-violet" size={26} />
-                        <h1 className={`text-[28px] sm:text-[32px] font-bold tracking-tight ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                    <span className="h-6 sm:h-8 w-1.5 rounded-full bg-gradient-to-b from-amber-500 via-purple-500 to-indigo-500" />
+                    <div className="flex items-center gap-2 sm:gap-3">
+                        <Wallet className="text-accent-violet" size={22} />
+                        <h1 className={`text-xl sm:text-2xl md:text-[28px] font-bold tracking-tight ${isDark ? 'text-white' : 'text-slate-900'}`}>
                             My Portfolio
                         </h1>
                     </div>
                 </div>
                 <button
                     onClick={() => setShowAddForm(true)}
-                    className="btn-primary flex items-center gap-2 shadow-lg"
+                    className="btn-primary flex items-center justify-center gap-2 shadow-lg w-full sm:w-auto touch-target"
                 >
                     <Plus size={20} /> Add Asset
                 </button>
@@ -114,27 +114,27 @@ const Portfolio = () => {
                     </button>
                 </div>
             ) : (
-                <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
                     {/* Left Column: Stats & List */}
-                    <div className="xl:col-span-2 space-y-6">
+                    <div className="lg:col-span-2 space-y-4 sm:space-y-6">
                         {/* Summary Card */}
-                        <div className={`rounded-2xl p-6 border ${isDark
-                                ? 'bg-gradient-to-br from-background-secondary to-background-tertiary border-slate-800'
-                                : 'bg-gradient-to-br from-white to-slate-50 border-slate-200 shadow-sm'
+                        <div className={`rounded-2xl p-4 sm:p-6 border ${isDark
+                            ? 'bg-gradient-to-br from-background-secondary to-background-tertiary border-slate-800'
+                            : 'bg-gradient-to-br from-white to-slate-50 border-slate-200 shadow-sm'
                             }`}>
-                            <div className={`text-sm font-medium mb-1 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Total Balance</div>
-                            <div className={`text-4xl font-bold mb-6 ${isDark ? 'text-white' : 'text-slate-900'}`}>{currency.symbol}{totalBalance.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
+                            <div className={`text-xs sm:text-sm font-medium mb-1 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Total Balance</div>
+                            <div className={`text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 ${isDark ? 'text-white' : 'text-slate-900'}`}>{currency.symbol}{totalBalance.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
 
-                            <div className="grid grid-cols-2 gap-4">
-                                <div className={`p-4 rounded-xl ${isDark ? 'bg-black/20' : 'bg-slate-100'}`}>
+                            <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                                <div className={`p-3 sm:p-4 rounded-xl ${isDark ? 'bg-black/20' : 'bg-slate-100'}`}>
                                     <div className={`text-xs mb-1 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Total Profit/Loss</div>
-                                    <div className={`text-xl font-bold ${totalPL >= 0 ? 'text-success' : 'text-danger'}`}>
+                                    <div className={`text-lg sm:text-xl font-bold ${totalPL >= 0 ? 'text-success' : 'text-danger'}`}>
                                         {totalPL >= 0 ? '+' : ''}{currency.symbol}{Math.abs(totalPL).toLocaleString(undefined, { maximumFractionDigits: 2 })}
                                     </div>
                                 </div>
-                                <div className={`p-4 rounded-xl ${isDark ? 'bg-black/20' : 'bg-slate-100'}`}>
+                                <div className={`p-3 sm:p-4 rounded-xl ${isDark ? 'bg-black/20' : 'bg-slate-100'}`}>
                                     <div className={`text-xs mb-1 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>P/L %</div>
-                                    <div className={`text-xl font-bold ${totalPLPercent >= 0 ? 'text-success' : 'text-danger'}`}>
+                                    <div className={`text-lg sm:text-xl font-bold ${totalPLPercent >= 0 ? 'text-success' : 'text-danger'}`}>
                                         {totalPLPercent >= 0 ? '+' : ''}{Math.abs(totalPLPercent).toFixed(2)}%
                                     </div>
                                 </div>
@@ -144,31 +144,31 @@ const Portfolio = () => {
                         {/* Holdings List */}
                         <div className={`rounded-2xl overflow-hidden border ${isDark ? 'bg-background-secondary border-slate-800' : 'bg-white border-slate-200 shadow-sm'
                             }`}>
-                            <div className="overflow-x-auto">
-                                <table className="w-full">
+                            <div className="overflow-x-auto hide-scrollbar">
+                                <table className="w-full min-w-[500px]">
                                     <thead className={`border-b ${isDark ? 'bg-background-tertiary border-slate-800' : 'bg-slate-50 border-slate-200'}`}>
                                         <tr>
-                                            <th className={`px-6 py-4 text-left text-xs font-bold uppercase tracking-wider ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Asset</th>
-                                            <th className={`px-6 py-4 text-right text-xs font-bold uppercase tracking-wider ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Balance</th>
-                                            <th className={`px-6 py-4 text-right text-xs font-bold uppercase tracking-wider ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Price</th>
-                                            <th className={`px-6 py-4 text-right text-xs font-bold uppercase tracking-wider hidden sm:table-cell ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Allocation</th>
-                                            <th className="px-6 py-4"></th>
+                                            <th className={`px-4 sm:px-6 py-3 sm:py-4 text-left text-xs font-bold uppercase tracking-wider ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Asset</th>
+                                            <th className={`px-4 sm:px-6 py-3 sm:py-4 text-right text-xs font-bold uppercase tracking-wider ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Balance</th>
+                                            <th className={`px-4 sm:px-6 py-3 sm:py-4 text-right text-xs font-bold uppercase tracking-wider ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Price</th>
+                                            <th className={`px-4 sm:px-6 py-3 sm:py-4 text-right text-xs font-bold uppercase tracking-wider hidden md:table-cell ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Allocation</th>
+                                            <th className="px-4 sm:px-6 py-3 sm:py-4"></th>
                                         </tr>
                                     </thead>
                                     <tbody className={`divide-y ${isDark ? 'divide-slate-800' : 'divide-slate-100'}`}>
                                         {portfolioItems.map(item => (
                                             <tr key={item.id} className={`transition-colors ${isDark ? 'hover:bg-white/5' : 'hover:bg-slate-50'}`}>
-                                                <td className="px-6 py-4 whitespace-nowrap">
-                                                    <div className="flex items-center gap-3">
-                                                        <img src={item.large} alt={item.name} className="w-8 h-8 rounded-full" />
+                                                <td className="px-4 sm:px-6 py-3 sm:py-4 whitespace-nowrap">
+                                                    <div className="flex items-center gap-2 sm:gap-3">
+                                                        <img src={item.large} alt={item.name} className="w-7 h-7 sm:w-8 sm:h-8 rounded-full" loading="lazy" />
                                                         <div>
-                                                            <div className={`font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>{item.symbol.toUpperCase()}</div>
+                                                            <div className={`font-bold text-sm sm:text-base ${isDark ? 'text-white' : 'text-slate-900'}`}>{item.symbol.toUpperCase()}</div>
                                                             <div className={`text-xs ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>{item.amount} {item.symbol.toUpperCase()}</div>
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td className="px-6 py-4 whitespace-nowrap text-right">
-                                                    <div className={`font-medium ${isDark ? 'text-white' : 'text-slate-900'}`}>{currency.symbol}{item.value.toLocaleString(undefined, { maximumFractionDigits: 2 })}</div>
+                                                <td className="px-4 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-right">
+                                                    <div className={`font-medium text-sm sm:text-base ${isDark ? 'text-white' : 'text-slate-900'}`}>{currency.symbol}{item.value.toLocaleString(undefined, { maximumFractionDigits: 2 })}</div>
                                                     <div className={`text-xs font-medium ${item.pl >= 0 ? 'text-success' : 'text-danger'}`}>
                                                         {item.pl >= 0 ? '+' : ''}{item.plPercent.toFixed(2)}%
                                                     </div>

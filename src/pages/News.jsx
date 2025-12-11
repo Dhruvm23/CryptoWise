@@ -35,24 +35,24 @@ const News = () => {
     }, []);
 
     return (
-        <div className="container min-h-screen pb-20 pt-6 fade-in space-y-8">
+        <div className="container min-h-screen pb-20 pt-4 sm:pt-6 fade-in space-y-4 sm:space-y-6">
             {/* Stylized Heading */}
             <div className="flex items-center gap-3">
-                <span className="h-8 w-1.5 rounded-full bg-gradient-to-b from-amber-500 via-purple-500 to-indigo-500" />
-                <div className="flex items-center gap-3">
-                    <Newspaper className="text-accent-violet" size={28} />
-                    <h1 className={`text-[28px] sm:text-[32px] font-bold tracking-tight ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                <span className="h-6 sm:h-8 w-1.5 rounded-full bg-gradient-to-b from-amber-500 via-purple-500 to-indigo-500" />
+                <div className="flex items-center gap-2 sm:gap-3">
+                    <Newspaper className="text-accent-violet" size={22} />
+                    <h1 className={`text-xl sm:text-2xl md:text-[28px] font-bold tracking-tight ${isDark ? 'text-white' : 'text-slate-900'}`}>
                         Crypto News
                     </h1>
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
                 {loading ? (
                     [...Array(8)].map((_, i) => (
                         <div key={i} className={`rounded-2xl overflow-hidden animate-pulse border ${isDark ? 'bg-background-secondary border-slate-800' : 'bg-white border-slate-200 shadow-sm'
                             }`}>
-                            <div className={`h-48 ${isDark ? 'bg-background-tertiary' : 'bg-slate-100'}`} />
+                            <div className={`h-40 sm:h-48 ${isDark ? 'bg-background-tertiary' : 'bg-slate-100'}`} />
                             <div className="p-4 space-y-3">
                                 <div className={`h-6 rounded w-3/4 ${isDark ? 'bg-background-tertiary' : 'bg-slate-200'}`} />
                                 <div className={`h-4 rounded ${isDark ? 'bg-background-tertiary' : 'bg-slate-200'}`} />
@@ -68,21 +68,22 @@ const News = () => {
                             target="_blank"
                             rel="noreferrer"
                             className={`group overflow-hidden block transition-all duration-300 hover:-translate-y-1 rounded-2xl border ${isDark
-                                    ? 'bg-background-secondary border-slate-800 hover:shadow-glow hover:border-accent-violet/30'
-                                    : 'bg-white border-slate-200 shadow-sm hover:shadow-lg hover:border-accent-violet/30'
+                                ? 'bg-background-secondary border-slate-800 hover:shadow-glow hover:border-accent-violet/30'
+                                : 'bg-white border-slate-200 shadow-sm hover:shadow-lg hover:border-accent-violet/30'
                                 }`}
                         >
-                            <div className="relative h-48 overflow-hidden">
+                            <div className="relative h-40 sm:h-48 overflow-hidden">
                                 <img
                                     src={item.image}
                                     alt={item.title}
                                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    loading="lazy"
                                 />
                                 <div className="absolute top-2 right-2 bg-black/60 backdrop-blur-md px-2 py-1 rounded text-xs font-bold text-white uppercase border border-white/10">
                                     {item.category}
                                 </div>
                             </div>
-                            <div className="p-5 flex flex-col h-[calc(100%-12rem)]">
+                            <div className="p-4 sm:p-5 flex flex-col">
                                 <div className="flex-1">
                                     <h2 className={`text-lg font-semibold mb-3 line-clamp-2 group-hover:text-accent-violet transition-colors ${isDark ? 'text-white' : 'text-slate-900'
                                         }`}>{item.title}</h2>
